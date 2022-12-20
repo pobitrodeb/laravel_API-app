@@ -18,4 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// get api for feach usesr
 Route::get('/users/{id?}', [UserApiController::class, 'showUser']);
+
+//post api for add user 
+Route::post('/add-user', [UserApiController::class, 'addUser']);
