@@ -24,3 +24,6 @@ Route::get('/users/{id?}', [UserApiController::class, 'showUser']);
 
 //post api for add user
 Route::post('/add-user', [UserApiController::class, 'addUser']);
+
+// post api for multple user
+Route::post('/add-multi-user', [UserApiController::class, 'addMultiUser']);
