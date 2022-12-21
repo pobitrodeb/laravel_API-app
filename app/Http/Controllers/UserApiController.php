@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Dotenv\Validator;
+use make;
 
 class UserApiController extends Controller
 {
@@ -25,25 +26,21 @@ class UserApiController extends Controller
         if($request->ismethod('post')){
             $data = $request->all();
            // return $data;
-
-            $rules = [
-              'name' => 'required',
-              'email' => 'required|email|unique:users',
-              'password' => 'required'
+           $rules = [
+                   'name' => 'required',
+                   'email' => 'required|email|unique:users',
+                   'password' => 'required'
+            ];
+            $customMessage = [
+                 'name.required' => 'Name is required',
+                 'email.required' => 'Email is required',
+                 'password.required' => 'Password is required',
             ];
 
-            $customMessage = [
-                'name.required' => 'Name is required',
-                'email.required' => 'Email is required',
-                'password.required' => 'Password is required',
-             ];
-
-             $validator = Validator::make($data, $rules, $customMessage);
-            if($validator->fails()){
-                return response()->json($validator->errors(), 422);
-            }
-
-
+            // $validator = Validator::make($data, $rules, $customMessage);
+            //  if($validator->fails()){
+            //      return response()->json($validator->errors(), 422);
+            //  }
            $user = new User();
            $user->name = $data['name'];
            $user->email = $data['email'];
