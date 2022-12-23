@@ -30,3 +30,6 @@ Route::post('/add-multi-user', [UserApiController::class, 'addMultiUser']);
 
 //put api for add update user details
 Route::put('/update-user-details/{id}', [UserApiController::class, 'updateUser']);
+
+//patch api for add update user details
+Route::patch('/update-user-single-record/{id}', [UserApiController::class, 'updateUserSingle']);
