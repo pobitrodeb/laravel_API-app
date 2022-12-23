@@ -157,5 +157,12 @@ class UserApiController extends Controller
             return response()->json(['message' => $message], 200);
         }
     }
-
+     // delete api for single record delete json formet
+     public function deleteMultiRecord($ids)
+     {
+        $ids = explode(',', $ids);
+        User::whereIn('id', $ids)->delete();
+        $message = 'User multiple data deleete successfully by UserAPI';
+            return response()->json(['message' => $message], 200);
+     }
 }

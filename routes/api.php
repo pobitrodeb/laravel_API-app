@@ -40,3 +40,6 @@ Route::delete('/delete-user-single-records/{id}', [UserApiController::class, 'de
 
 // delete api for delete single user with json
 Route::delete('/delete-user-single-record-with-json', [UserApiController::class, 'deleteSignleRecordJson']);
+
+// delete api for delete multiple user
+Route::delete('/delete-user-multiple-records/{ids}', [UserApiController::class, 'deleteMultiRecord']);
