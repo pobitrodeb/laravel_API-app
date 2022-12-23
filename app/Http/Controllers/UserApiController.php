@@ -147,5 +147,15 @@ class UserApiController extends Controller
         $message = 'User single records delete successfully by UserAPI';
         return response()->json(['message' => $message], 200);
     }
+    // delete api for single record delete json formet
+    public function deleteSignleRecordJson(Request $request)
+    {
+        if($request->isMethod('delete')){
+            $data = $request->all();
+            User::where('id', $data['id'])->delete();
+            $message = 'User single records delete successfully with JSON formet by UserAPI';
+            return response()->json(['message' => $message], 200);
+        }
+    }
 
 }
