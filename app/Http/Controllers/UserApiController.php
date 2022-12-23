@@ -83,7 +83,7 @@ class UserApiController extends Controller
                return response()->json(['message' => $message], 201);
         }
     }
-
+    // put api for multple update
     public function updateUser(Request $request, $id)
     {
         if($request->ismethod('put')){
@@ -113,6 +113,7 @@ class UserApiController extends Controller
         }
     }
 
+    // patch api for single record update
     public function updateUserSingle(Request $request, $id)
     {
         if($request->ismethod('patch')){
@@ -137,4 +138,14 @@ class UserApiController extends Controller
            return response()->json(['message' => $message], 202);
         }
     }
+
+    // delete api for single record delete
+
+    public function deleteSignleRecord($id = null)
+    {
+        User::findOrFail($id)->delete();
+        $message = 'User single records delete successfully by UserAPI';
+        return response()->json(['message' => $message], 200);
+    }
+
 }
