@@ -53,7 +53,7 @@ class UserApiController extends Controller
 
    // post api for multple user
    public function addMultiUser(Request $request)
-    {
+   {
         if($request->ismethod('post')){
             $data = $request->all();
            // return $data;
@@ -84,4 +84,32 @@ class UserApiController extends Controller
         }
     }
 
+    public function updateUser(Request $request, $id)
+    {
+        if($request->ismethod('put')){
+            $data = $request->all();
+           // return $data;
+           $rules = [
+                   'name' => 'required',
+
+                   'password' => 'required'
+            ];
+            $customMessage = [
+                 'name.required' => 'Name is required',
+
+                 'password.required' => 'Password is required',
+            ];
+
+            // $validator = Validator::make($data, $rules, $customMessage);
+            //  if($validator->fails()){
+            //      return response()->json($validator->errors(), 422);
+            //  }
+           $user = User::find($id);
+           $user->name = $data['name'];
+           $user->password = bcrypt( $data['password']);
+           $user->save();
+           $message = 'User update successfully by UserAPI';
+           return response()->json(['message' => $message], 202);
+        }
+    }
 }
